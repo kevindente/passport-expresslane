@@ -16,7 +16,7 @@ var app = module.exports = express();
 var users = {};
 var authConfig = require("./authinfo");
 
-authConfig.googleoauth.verifyCallback = function(authInfo, cb) {
+authConfig.googleoauth.verifyCallback = function(adapter, authInfo, cb) {
   var user = {username: authInfo.profile.displayName, id: authInfo.profile.id};
   users[authInfo.profile.id] = user;
   cb(null, user);
