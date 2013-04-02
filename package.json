@@ -1,22 +1,22 @@
 {
-  "name": "mongoose-passport",
+  "name": "passport-expresslane",
   "version": "0.0.1",
-  "description": "User authentication plugin for Mongoose based Node/Express apps",
+  "description": "Drop-dead easy authentication plugin for Express apps with Passport.js",
   "main": "index.js",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "test": "mocha"
   },
   "repository": "",
   "author": "",
   "license": "BSD",
   "dependencies": {
-    "mongoose": "~3.4.0",
     "passport": "~0.1",
-    "passport-google-oauth": "~0.1",
-    "expect.js": "~0.2.0",
-    "passport-oauth": "~0.1.14"
+    "expect.js": "~0.2",
+    "passport-facebook": "~0.1",
+    "passport-google-oauth": "~0.1"
   },
   "devDependencies": {
-    "express" : "~3"
+    "express": "~3",
+    "jade": "~0.2.0"
   }
 }

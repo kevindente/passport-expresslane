@@ -1,0 +1,7 @@
+{
+  "googleoauth": {
+    "clientID": "ENTER YOUR GOOGLE CLIENT ID HERE",
+    "clientSecret": "ENTER YOUR GOOGLE CLIENT SECRET HERE",
+    "baseURL": "http://localhost:3002/"
+  }
+}

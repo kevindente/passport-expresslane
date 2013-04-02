@@ -1,0 +1,12 @@
+h1= title
+p Welcome to #{title}
+
+
+if (user)
+  div= user.username
+div
+  a(href='/auth/googleoauth') Login with Google
+div
+  a(href='/auth/facebookoauth') Login with Facebook
+div
+  a(href='logout') Logout

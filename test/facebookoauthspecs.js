@@ -2,28 +2,28 @@ var passport = require('passport');
 var expect = require("expect.js");
 var express = require("express");
 
-describe("Google OAuth", function() {
-  var googleoAuth;
+describe("Facebook OAuth", function() {
+  var facebookoAuth;
   var app;
   var adapter;
   var config;
   beforeEach(function() {
     app = express();
-    googleoAuth = require("../lib/adapters/googleoauth");
+    facebookoAuth = require("../lib/adapters/facebookoauth");
     config = {
       clientID: "abc", 
       clientSecret: "def", 
       baseURL: "/",
       verifyCallback: function() {}
     };
-    adapter = googleoAuth(app, config);
+    adapter = facebookoAuth(app, config);
   });
   
   it("throws an error if app isn't specified", function() {
-    var googleoAuth = require("../lib/adapters/googleoauth");
+    var facebookoAuth = require("../lib/adapters/facebookoauth");
 
     try {
-      googleoAuth(null, {clientID: "abc", clientSecret: "def"});
+      facebookoAuth(null, {clientID: "abc", clientSecret: "def"});
       expect().fail("Expected exception that wasn't thrown");
     }
     catch(e) {
@@ -32,10 +32,10 @@ describe("Google OAuth", function() {
   });
 
   it("throws an error if options aren't specified", function() {
-    var googleoAuth = require("../lib/adapters/googleoauth");
+    var facebookoAuth = require("../lib/adapters/facebookoauth");
 
     try {
-      googleoAuth(app);
+      facebookoAuth(app);
       expect().fail("Expected exception that wasn't thrown");
     }
     catch(e) {
@@ -44,11 +44,9 @@ describe("Google OAuth", function() {
   });
 
   it("throws an error if verify callback isn't specified", function() {
-    var googleoAuth = require("../lib/adapters/googleoauth");
+    var facebookoAuth = require("../lib/adapters/facebookoauth");
 
     try {
-      googleoAuth(app, {clientID: "abc", clientSecret: "def", baseURL: "/"});
-      expect().fail("Expected exception that wasn't thrown");
     }
     catch(e) {
       expect(e.message).to.contain("Verify callback must be specified");
@@ -56,10 +54,10 @@ describe("Google OAuth", function() {
   });
 
   it("throws an error if the base URL isn't specified", function() {
-    var googleoAuth = require("../lib/adapters/googleoauth");
+    var facebookoAuth = require("../lib/adapters/facebookoauth");
 
     try {
-      googleoAuth(app, {clientID: "abc", clientSecret: "def"});
+      facebookoAuth(app, {clientID: "abc", clientSecret: "def"});
       expect().fail("Expected exception that wasn't thrown");
     }
     catch(e) {
@@ -68,21 +66,19 @@ describe("Google OAuth", function() {
   });
 
   it("sets the adapter name", function() {
-    expect(adapter.name).to.equal("googleoauth");
+    expect(adapter.name).to.equal("facebookoauth");
   });
 
   it("sets the default scope", function() {
-    expect(adapter.scope).to.equal('https://www.googleapis.com/auth/userinfo.email https://www.googleapis.com/auth/userinfo.profile');
+    expect(adapter.scope).to.equal('email');
   });
   
 
   it("uses a provided oauth scope if specified", function() {
-    config.scope = 'https://www.googleapis.com/auth/userinfo.email';
-    adapter = googleoAuth(app, config);
-    expect(adapter.scope).to.equal('https://www.googleapis.com/auth/userinfo.email');
+    config.scope = 'anotherscope';
+    adapter = facebookoAuth(app, config);
+    expect(adapter.scope).to.equal('anotherscope');
   });
 
 });
-
-
 
